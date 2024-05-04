@@ -5,21 +5,26 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
 import Projects from './pages/Projects'
-import Header from '../components/Header'
+import MAHeader from './components/MAHeader'
+import MAFooter from './components/MAFooter'
+import MAPrivateRoute from './components/MAPrivateRoute'
 
 export default function AppRouter() {
   return (
     <div>
       <Router>
-        <Header/>
+        <MAHeader />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route element={<MAPrivateRoute />}>
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
           <Route path='/projects' element={<Projects />} />
         </Routes>
+        <MAFooter />
       </Router>
     </div>
   )
