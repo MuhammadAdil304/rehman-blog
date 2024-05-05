@@ -8,6 +8,9 @@ import Projects from './pages/Projects'
 import MAHeader from './components/MAHeader'
 import MAFooter from './components/MAFooter'
 import MAPrivateRoute from './components/MAPrivateRoute'
+import MAOnlyAdminPrivateRoute from './components/MAOnlyAdminPrivateRoute'
+import CreatePost from './pages/CreatePost'
+import "react-circular-progressbar/dist/styles.css";
 
 export default function AppRouter() {
   return (
@@ -21,6 +24,9 @@ export default function AppRouter() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route element={<MAPrivateRoute />}>
             <Route path='/dashboard' element={<Dashboard />} />
+          </Route>   
+          <Route element={<MAOnlyAdminPrivateRoute />}>
+            <Route path='/create-post' element={<CreatePost />} />
           </Route>
           <Route path='/projects' element={<Projects />} />
         </Routes>

@@ -23,6 +23,7 @@ import {
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 export default function MADashProfile() {
   const [imageFile, setImageFile] = useState(null);
@@ -35,7 +36,7 @@ export default function MADashProfile() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
 
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const filePickerRef = useRef();
   const dispatch = useDispatch();
 
@@ -228,9 +229,25 @@ export default function MADashProfile() {
           placeholder="Password"
           onChange={handleChange}
         />
-        <Button type="submit" gradientDuoTone="cyanToBlue" outline>
-          Update
+        <Button
+          type="submit"
+          gradientDuoTone="cyanToBlue"
+          outline
+          disabled={loading || imageFileUploading}
+        >
+          {loading ? "Loading..." : "Update"}
         </Button>
+        {(currentUser.data?.user?.isAdmin || currentUser.isAdmin) && (
+          <Link to="/create-post">
+            <Button
+              type="button"
+              gradientDuoTone="cyanToBlue"
+              className="w-full"
+            >
+              Create a post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">

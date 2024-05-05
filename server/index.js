@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const Cors = require('cors')
 const userRoutes = require('./routes/user.route')
 const authRoutes = require('./routes/auth.route')
+const PostRoutes = require('./routes/post.route')
 const cookieParser = require('cookie-parser')
 
 const app = express()
@@ -14,6 +15,7 @@ app.use(Cors({ origin: true, credentials: true }));
 
 app.use('/api/user', userRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/post' , PostRoutes)
 
 
 

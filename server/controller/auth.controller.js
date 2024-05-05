@@ -64,10 +64,8 @@ const AuthController = {
             if (userExist) {
                 const correctPassword = await bcrypt.compare(obj.password, userExist.password)
                 if (correctPassword) {
-                    const token = jwt.sign({ id: userExist._id }, process.env.JWT_SECRET)
-                    res.status(200).cookie('access_token', token, {
-                        httpOnly: true,
-                    }).send(SendResponse(true, "Login Successfully", { data: { user: userExist, token: token } }))
+                    const token = jwt.sign({ id: userExist._id, isAdmin: userExist.isAdmin }, process.env.JWT_SECRET)
+                    res.status(200).cookie('access_token', token).send(SendResponse(true, "Login Successfully", { data: { user: userExist, token: token } }))
                 }
                 else {
                     res.status(404).send(SendResponse(false, "Your Password is incorrect", null))
@@ -86,10 +84,8 @@ const AuthController = {
         const { name, email, googlePhotoUrl } = req.body
         const user = await User.findOne({ email: email })
         if (user) {
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-            res.status(200).cookie('access_token', token, {
-                httpOnly: true,
-            }).send(SendResponse(true, "Login Successfully", { user: user, token: token }))
+            const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET)
+            res.status(200).cookie('access_token', token).send(SendResponse(true, "Login Successfully", { user: user, token: token }))
         }
         else {
             const generatedPassword = await bcrypt.genSalt(10)
@@ -103,8 +99,8 @@ const AuthController = {
             })
             await newUser.save()
             console.log(newUser)
-            const token = jwt.sign({ ...newUser }, process.env.JWT_SECRET)
-            res.status(200).send(SendResponse(true, "Login Successfully", { user: newUser, token: token }))
+            const token = jwt.sign({ id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET)
+            res.status(200).cookie('access_token', token).send(SendResponse(true, "Login Successfully", { user: newUser, token: token }))
         }
     }
 
