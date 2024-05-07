@@ -68,6 +68,16 @@ const PostController = {
         catch (error) {
             res.status(500).send(SendResponse(false, error.message, null))
         }
+    },
+    deletePost: async (req, res) => {
+        try {
+            const id = req.params.id;
+            const deletedPost = await Post.findByIdAndDelete(id)
+            res.status(200).send(SendResponse(true, "Post Deleted Successfully", deletedPost));
+        }
+        catch (error) {
+            res.status(500).send(SendResponse(false, error.message, null))
+        }
     }
 }
 
