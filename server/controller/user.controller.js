@@ -112,12 +112,22 @@ const UserController = {
           $gte: oneMonthAgo,
         }
       })
-      res.status(200).send(SendResponse(true, 'All Users', {usersWithoutPassword, totalUsers, lastMonthUsers}));
+      res.status(200).send(SendResponse(true, 'All Users', { usersWithoutPassword, totalUsers, lastMonthUsers }));
     }
     catch (error) {
       res.status(500).send(SendResponse(false, error.message, null))
     }
-  }
+  },
+  deleteUser: async (req, res) => {
+    try {
+      const id = req.params.id
+      const deletedUser = await User.findByIdAndDelete(id)
+      res.status(200).send(SendResponse(true, "User Deleted Successfully", deletedUser));
+    }
+    catch(error){
+      res.status(500).send(SendResponse(false, error.message, null))
+    }
+  },
 };
 
 module.exports = UserController;
