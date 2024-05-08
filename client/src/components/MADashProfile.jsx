@@ -83,7 +83,7 @@ export default function MADashProfile() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
           setFormData({ ...formData, profilePicture: downloadURL });
-          setImageFileUploading(true);
+          setImageFileUploading(false);
         });
       }
     );

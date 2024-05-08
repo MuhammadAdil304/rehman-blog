@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import MADashSidebar from "../components/MADashSidebar";
 import MADashProfile from "../components/MADashProfile";
 import MADashPost from "../components/MADashPost";
+import MADashUsers from "../components/MADashUsers"
 
 export default function Dashboard() {
   const location = useLocation();
@@ -21,6 +22,7 @@ export default function Dashboard() {
       </div>
       {tab === "profile" && <MADashProfile />}
       {tab === "posts" && <MADashPost />}
+      {tab === "users" && <MADashUsers />}
     </div>
   );
 }
