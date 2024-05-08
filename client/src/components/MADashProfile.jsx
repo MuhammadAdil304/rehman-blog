@@ -104,6 +104,7 @@ export default function MADashProfile() {
           formData
         )
         .then((res) => {
+          console.log(res)
           if (res?.data?.isSuccessfull == true) {
             dispatch(updateSuccess(res?.data?.data));
             setUpdateUserSuccess("Successfully updated");

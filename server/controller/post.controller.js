@@ -78,7 +78,19 @@ const PostController = {
         catch (error) {
             res.status(500).send(SendResponse(false, error.message, null))
         }
-    }
+    },
+    updatePost: async (req, res) => {
+        try {
+            const id = req.params.id
+            const { title, content, category, image } = req.body
+            const obj = { title, content, category, image }
+            const updatedPost = await Post.findByIdAndUpdate(id, { $set: obj }, { new: true })
+            res.status(200).send(SendResponse(true, 'Updated Successfully', updatedPost))
+        }
+        catch (error) {
+            res.status(500).send(SendResponse(false, error.message, null))
+        }
+    },
 }
 
 module.exports = PostController;
