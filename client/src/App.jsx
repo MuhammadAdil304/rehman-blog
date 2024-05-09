@@ -12,6 +12,7 @@ import MAOnlyAdminPrivateRoute from './components/MAOnlyAdminPrivateRoute'
 import CreatePost from './pages/CreatePost'
 import "react-circular-progressbar/dist/styles.css";
 import UpdatePost from './pages/UpdatePost'
+import Post from './pages/Post'
 
 export default function AppRouter() {
   return (
@@ -31,6 +32,7 @@ export default function AppRouter() {
             <Route path='/update-post/:id' element={<UpdatePost />} />
           </Route>
           <Route path='/projects' element={<Projects />} />
+          <Route path='/post/:postSlug' element={<Post />} />
         </Routes>
         <MAFooter />
       </Router>

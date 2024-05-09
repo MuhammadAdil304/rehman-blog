@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Button, Table, Modal, Alert,Spinner } from "flowbite-react";
+import { Button, Table, Modal, Alert, Spinner } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
@@ -67,7 +67,7 @@ export default function MADashPost() {
       .delete(`http://localhost:3000/api/post/deletePost/${postId}`)
       .then((res) => {
         if (res?.data?.isSuccessfull) {
-          setUserPosts((prev) => prev.filter((user) => user._id !== postId))
+          setUserPosts((prev) => prev.filter((user) => user._id !== postId));
         }
       })
       .catch((err) => {
@@ -78,15 +78,7 @@ export default function MADashPost() {
   return (
     <>
       {loading ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            height: "100vh",
-            alignItems: "center",
-          }}
-        >
+        <div className="flex justify-center items-center min-h-screen">
           <Spinner size="xl" />
         </div>
       ) : (

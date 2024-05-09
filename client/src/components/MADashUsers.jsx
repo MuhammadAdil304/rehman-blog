@@ -71,15 +71,7 @@ export default function MADashUsers() {
   return (
     <>
       {loading ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            height: "100vh",
-            alignItems: "center",
-          }}
-        >
+        <div className="flex justify-center items-center min-h-screen">
           <Spinner size="xl" />
         </div>
       ) : (
