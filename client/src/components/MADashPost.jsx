@@ -17,12 +17,9 @@ export default function MADashPost() {
   const getPosts = () => {
     setLoading(true);
     axios
-      .get(
-        `http://localhost:3000/api/post/getPosts?userId=${
-          currentUser.data?.user?._id || currentUser._id
-        }`
-      )
+      .get("http://localhost:3000/api/post/getPosts")
       .then((res) => {
+        console.log(res);
         if (res?.data?.isSuccessfull) {
           setUserPosts([...res?.data?.data?.posts]);
           if (res?.data?.data?.posts.length < 9) {

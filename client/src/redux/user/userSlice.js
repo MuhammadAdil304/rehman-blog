@@ -24,7 +24,6 @@ const userSlice = createSlice({
             state.error = action.payload
         },
         updateStart: (state) => {
-            currentUser = null
             state.loading = true
             state.error = null
         },

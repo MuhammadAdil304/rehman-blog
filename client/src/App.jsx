@@ -13,6 +13,7 @@ import CreatePost from './pages/CreatePost'
 import "react-circular-progressbar/dist/styles.css";
 import UpdatePost from './pages/UpdatePost'
 import Post from './pages/Post'
+import Search from './pages/Search'
 
 export default function AppRouter() {
   return (
@@ -24,6 +25,7 @@ export default function AppRouter() {
           <Route path='/about' element={<About />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
+          <Route path='/search' element={<Search />} />
           <Route element={<MAPrivateRoute />}>
             <Route path='/dashboard' element={<Dashboard />} />
           </Route>   

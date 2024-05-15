@@ -3,9 +3,6 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user.model");
 
 const UserController = {
-  test: (req, res) => {
-    res.send(SendResponse(true, "Test api is running", null));
-  },
   updateUser: async (req, res) => {
     try {
       const id = req.params.id;
@@ -118,16 +115,18 @@ const UserController = {
       res.status(500).send(SendResponse(false, error.message, null))
     }
   },
-  deleteUser: async (req, res) => {
+  updateStatus: async (req, res) => {
     try {
-      const id = req.params.id
-      const deletedUser = await User.findByIdAndDelete(id)
-      res.status(200).send(SendResponse(true, "User Deleted Successfully", deletedUser));
+      const id = req.params.id;
+      const userStatus = await User.findById(id)
+      userStatus.isAdmin = !userStatus.isAdmin
+      await userStatus.save()
+      res.status(200).send(SendResponse(true, "User Status Updated Successfully", userStatus));
     }
-    catch(error){
+    catch (error) {
       res.status(500).send(SendResponse(false, error.message, null))
     }
-  },
+  }
 };
 
 module.exports = UserController;
