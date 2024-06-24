@@ -1,10 +1,10 @@
 export default function About() {
   return (
-    <div className="min-h-screen">
-      <div>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="max-w-2xl mx-auto p-3 text-center">
         <div>
-          <h1>About Rehman's Blog</h1>
-          <div>
+          <h1 className=" text-3xl font-semibold my-7 text-center">About Rehman's Blog</h1>
+          <div className="text-md flex flex-col gap-6">
             <p>
               Rehman's Blog is your ultimate destination for everything related
               to web development, design, and technology. Whether you're a
